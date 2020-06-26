@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load movie_tags %}
+<div class="row">
+    <div class="col-xs-12" style="margin-bottom: 20px;">
+        <a href="{% url 'actor_add' %}" class="btn btn-primary">
+            Dodaj aktora
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered">
+            <tr>
+                <th>Dane:</th>
+                <th>Opis:</th>
+                <th>Ustawienia:</th>
+            </tr>
+            {% for actor in actors %}
+            <tr>
+                <td>{{actor.name}}</td>
+                <td>{{actor.about}}</td>
+                <td>
+                    <a href="{% url 'actor_delete' actor.id %}"
+                       class="btn btn-danger btn-xs">
+                        Usuń
+                    </a>
+                    <a href="{% url 'actor_edit' actor.id %}"
+                       class="btn btn-primary btn-xs">
+                        Edytuj
+                    </a>
+                </td>
+                {% endfor %}
+            </tr>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                {% if pagination.current_page > 1 %}
+                <li>
+                    <a href="{% url 'actor_list' %}?page={{pagination.current_page|subtract:'1'}}"
+                       aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% for page in pagination.page_range %}
+                <li><a href="{% url 'actor_list' %}?page={{page}}">{{page}}</a></li>
+                {% endfor %}
+                {% if pagination.has_next_page|is_true %}
+                <li>
+                    <a href="{% url 'actor_list' %}?page={{pagination.next_page}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{{ pagination.total_records }}
+{{ pagination.total_pages }}
+{{ pagination.current_page }}
+{{ pagination.has_next_page }}
+{% endblock %}

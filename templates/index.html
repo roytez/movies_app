@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+
+<!--<ul class="nav nav-tabs">-->
+<!--  <li role="presentation" class="active"><a href="#">Home</a></li>-->
+<!--  <li role="presentation"><a href="#">Profile</a></li>-->
+<!--  <li role="presentation"><a href="#">Messages</a></li>-->
+<!--</ul>-->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index_page' %}">Aplikacja filmy</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="{% if current_route_name == 'movie_list' %}active{% endif %}">
+                    <a href="{% url 'movie_list' %}">Filmy<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="{% if current_route_name == 'genre_list' %}active{% endif %}">
+                    <a href="{% url 'genre_list' %}">Gatunki</a>
+                </li>
+                <li class="{% if current_route_name == 'director_list' %}active{% endif %}">
+                    <a href="{% url 'director_list' %}">Reżyserzy</a>
+                </li>
+                <li class="{% if current_route_name == 'music_list' %}active{% endif %}">
+                    <a href="{% url 'music_list' %}">Muzyka</a>
+                </li>
+                <li class="{% if current_route_name == 'actor_list' %}active{% endif %}">
+                    <a href="{% url 'actor_list' %}">Aktorzy</a>
+                </li>
+                <!--                <li class="dropdown">-->
+                <!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+                <!--                       aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+                <!--                    <ul class="dropdown-menu">-->
+                <!--                        <li><a href="#">Action</a></li>-->
+                <!--                        <li><a href="#">Another action</a></li>-->
+                <!--                        <li><a href="#">Something else here</a></li>-->
+                <!--                        <li role="separator" class="divider"></li>-->
+                <!--                        <li><a href="#">Separated link</a></li>-->
+                <!--                        <li role="separator" class="divider"></li>-->
+                <!--                        <li><a href="#">One more separated link</a></li>-->
+                <!--                    </ul>-->
+                <!--                </li>-->
+            </ul>
+            <!--            <form class="navbar-form navbar-left">-->
+            <!--                <div class="form-group">-->
+            <!--                    <input type="text" class="form-control" placeholder="Search">-->
+            <!--                </div>-->
+            <!--                <button type="submit" class="btn btn-default">Submit</button>-->
+            <!--            </form>-->
+            <!--            <ul class="nav navbar-nav navbar-right">-->
+            <!--                <li><a href="#">Link</a></li>-->
+            <!--                <li class="dropdown">-->
+            <!--                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"-->
+            <!--                       aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+            <!--                    <ul class="dropdown-menu">-->
+            <!--                        <li><a href="#">Action</a></li>-->
+            <!--                        <li><a href="#">Another action</a></li>-->
+            <!--                        <li><a href="#">Something else here</a></li>-->
+            <!--                        <li role="separator" class="divider"></li>-->
+            <!--                        <li><a href="#">Separated link</a></li>-->
+            <!--                    </ul>-->
+            <!--                </li>-->
+            <!--            </ul>-->
+        </div>
+    </div>
+</nav>
+<div class="container" ng-app="MoviesApp" ng-controller="MoviesAppMainController">
+    {% block content %}
+    {% endblock %}
+<!--    <input type="text" ng-model="MovieName" class="form-control">-->
+<!--    <span ng-bind="MovieName"></span>-->
+<!--    <button type="button"-->
+<!--            class="btn btn-primary"-->
+<!--            ng-click="MovieAdd();">Add-->
+<!--    </button>-->
+<!--    <ul class="list-group">-->
+<!--        <movie-element movies="Movies"-->
+<!--                       movie="movie"-->
+<!--                       ng-show="1 == 2"-->
+<!--                       ng-repeat="movie in Movies track by $index">-->
+<!--        </movie-element>-->
+<!--        &lt;!&ndash;        <li class="list-group-item"&ndash;&gt;-->
+<!--        &lt;!&ndash;            ng-repeat="movie in Movies">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span ng-bind="movie"></span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span ng-bind="$index"></span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <button type="button" ng-click="MovieRemove($index);">Usuń</button>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+<!--    </ul>-->
+<!--    <button type="button" ng-click="RemoveAll();">Usuń wszystko</button>-->
+<!--    <pre ng-bind="Movies | json"></pre>-->
+</div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
+<script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+</html>
